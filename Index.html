@@ -1,0 +1,1102 @@
+<!DOCTYPE html>
+<html lang="es" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pedro Moraez | Diseño & Venta de Sillas Artesanales y Ergonómicas</title>
+    
+    <!-- Google Fonts: Fraunces (Editorial/Artesanal) & Plus Jakarta Sans (Moderna/Limpia) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,600;9..144,700&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Plus Jakarta Sans', 'sans-serif'],
+                        serif: ['Fraunces', 'serif'],
+                    },
+                    colors: {
+                        crema: '#FAF7F2',
+                        arena: '#F0EAE1',
+                        madera: '#8B5A2B',
+                        nogal: '#3E2723',
+                        terracota: '#C85A32',
+                        bosque: '#2D4F3E',
+                        carbon: '#171513',
+                        pizarra: '#221F1D'
+                    }
+                }
+            }
+        }
+    </script>
+
+    <!-- Estilos CSS Modernos y Variables Personalizadas -->
+    <style>
+        :root {
+            --bg-primary: #FAF7F2;
+            --bg-secondary: #F0EAE1;
+            --text-main: #29221E;
+            --text-muted: #6B5E55;
+            --accent-terracotta: #C85A32;
+            --accent-forest: #2D4F3E;
+            --border-warm: rgba(139, 90, 43, 0.16);
+        }
+
+        html.dark {
+            --bg-primary: #171513;
+            --bg-secondary: #221F1D;
+            --text-main: #F5F0EA;
+            --text-muted: #A89F96;
+            --accent-terracotta: #E06D44;
+            --accent-forest: #4A7C62;
+            --border-warm: rgba(245, 240, 234, 0.12);
+        }
+
+        body {
+            background-color: var(--bg-primary);
+            color: var(--text-main);
+            transition: background-color 0.35s ease, color 0.35s ease;
+        }
+
+        .warm-border {
+            border-color: var(--border-warm);
+        }
+
+        /* Animación suave para tarjetas */
+        @keyframes fadeUp {
+            from {
+                opacity: 0;
+                transform: translateY(16px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .animate-fade-up {
+            animation: fadeUp 0.55s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+        }
+
+        /* Scrollbar personalizada */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: transparent;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: rgba(139, 90, 43, 0.35);
+            border-radius: 9999px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: rgba(139, 90, 43, 0.55);
+        }
+    </style>
+</head>
+<body class="antialiased selection:bg-terracota selection:text-white">
+
+    <!-- ================= BARRA DE NAVEGACIÓN SUPERIOR ================= -->
+    <header class="sticky top-0 z-40 backdrop-blur-md bg-[#FAF7F2]/85 dark:bg-[#171513]/85 border-b warm-border transition-colors duration-300">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-20">
+                
+                <!-- Marca Personal Pedro Moraez -->
+                <a href="#inicio" class="flex items-center gap-3 group focus:outline-none">
+                    <div class="w-10 h-10 rounded-xl bg-bosque dark:bg-[#4A7C62] text-crema flex items-center justify-center shadow-md group-hover:scale-105 transition-transform">
+                        <!-- Icono SVG minimalista de silla -->
+                        <svg class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M7 4h10v7H7z"/>
+                            <path d="M5 11h14v3H5z"/>
+                            <path d="M7 14v6"/>
+                            <path d="M17 14v6"/>
+                        </svg>
+                    </div>
+                    <div>
+                        <span class="font-serif font-bold text-xl tracking-tight block leading-none">Pedro Moraez</span>
+                        <span class="text-[11px] uppercase tracking-widest text-[#6B5E55] dark:text-[#A89F96] font-semibold">Taller & Sillería</span>
+                    </div>
+                </a>
+
+                <!-- Enlaces de Navegación (Desktop) -->
+                <nav class="hidden md:flex items-center gap-8 text-sm font-medium">
+                    <a href="#inicio" class="hover:text-terracota transition-colors">Inicio</a>
+                    <a href="#sobre-mi" class="hover:text-terracota transition-colors">Sobre mí</a>
+                    <a href="#catalogo" class="hover:text-terracota transition-colors">Catálogo</a>
+                    <a href="#garantia" class="hover:text-terracota transition-colors">Garantía</a>
+                    <a href="#contacto" class="hover:text-terracota transition-colors">Contacto</a>
+                </nav>
+
+                <!-- Controles Derecha: Tema, Carrito y Menú Móvil -->
+                <div class="flex items-center gap-2.5">
+                    <!-- Selector Tema Claro / Oscuro -->
+                    <button id="theme-toggle" aria-label="Cambiar tema claro u oscuro" class="p-2.5 rounded-xl bg-arena dark:bg-pizarra hover:opacity-85 transition-all border warm-border">
+                        <svg id="sun-icon" class="w-5 h-5 hidden text-amber-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"/>
+                        </svg>
+                        <svg id="moon-icon" class="w-5 h-5 text-nogal" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"/>
+                        </svg>
+                    </button>
+
+                    <!-- Botón Carrito Lateral -->
+                    <button id="open-cart-btn" aria-label="Abrir carrito de compras" class="relative flex items-center gap-2 px-3.5 py-2.5 rounded-xl bg-terracota hover:bg-[#b24d28] text-white font-semibold text-sm shadow-md shadow-terracota/20 transition-all">
+                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z"/>
+                        </svg>
+                        <span class="hidden sm:inline">Carrito</span>
+                        <span id="cart-badge" class="inline-flex items-center justify-center min-w-[20px] h-5 px-1.5 text-xs font-bold rounded-full bg-crema text-nogal">0</span>
+                    </button>
+
+                    <!-- Botón Menú Móvil -->
+                    <button id="mobile-menu-btn" aria-label="Menú" class="md:hidden p-2.5 rounded-xl bg-arena dark:bg-pizarra border warm-border">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path id="menu-bars" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>
+                            <path id="menu-x" class="hidden" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>
+                        </svg>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Menú Desplegable Móvil -->
+        <div id="mobile-menu" class="hidden md:hidden bg-crema dark:bg-pizarra border-b warm-border px-4 pt-2 pb-6 space-y-1">
+            <a href="#inicio" class="mobile-nav-link block px-4 py-3 rounded-xl font-medium hover:bg-arena dark:hover:bg-carbon">Inicio</a>
+            <a href="#sobre-mi" class="mobile-nav-link block px-4 py-3 rounded-xl font-medium hover:bg-arena dark:hover:bg-carbon">Sobre mí</a>
+            <a href="#catalogo" class="mobile-nav-link block px-4 py-3 rounded-xl font-medium hover:bg-arena dark:hover:bg-carbon">Catálogo de Sillas</a>
+            <a href="#garantia" class="mobile-nav-link block px-4 py-3 rounded-xl font-medium hover:bg-arena dark:hover:bg-carbon">Garantía y Envíos</a>
+            <a href="#contacto" class="mobile-nav-link block px-4 py-3 rounded-xl font-medium hover:bg-arena dark:hover:bg-carbon">Pedidos a Medida</a>
+        </div>
+    </header>
+
+    <!-- ================= SECCIÓN HERO ================= -->
+    <section id="inicio" class="relative py-16 sm:py-24 lg:py-28 overflow-hidden">
+        <!-- Detalles decorativos orgánicos -->
+        <div class="absolute -top-24 -right-24 w-96 h-96 rounded-full bg-terracota/10 blur-3xl pointer-events-none"></div>
+        <div class="absolute bottom-0 -left-24 w-80 h-80 rounded-full bg-bosque/10 blur-3xl pointer-events-none"></div>
+
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid lg:grid-cols-12 gap-12 items-center">
+                
+                <!-- Presentación Principal -->
+                <div class="lg:col-span-7 space-y-6 animate-fade-up">
+                    <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-arena dark:bg-pizarra border warm-border text-xs font-semibold uppercase tracking-wider text-bosque dark:text-emerald-400">
+                        <span class="w-2 h-2 rounded-full bg-terracota"></span>
+                        <span>Diseño Argentino • Maderas Nobles & Ergonomía</span>
+                    </div>
+
+                    <h1 class="font-serif font-bold text-4xl sm:text-5xl lg:text-6xl leading-[1.1] tracking-tight">
+                        El arte de sentarse bien, diseñado por <span class="text-terracota">Pedro Moraez</span>.
+                    </h1>
+
+                    <p class="text-lg text-[#6B5E55] dark:text-[#A89F96] max-w-2xl leading-relaxed">
+                        Selecciono, diseño y comercializo sillas de comedor, oficina ergonómica y piezas de autor que unen la calidez de la madera natural con el confort que tu cuerpo necesita todos los días.
+                    </p>
+
+                    <div class="flex flex-col sm:flex-row gap-4 pt-2">
+                        <a href="#catalogo" class="px-8 py-4 rounded-2xl bg-bosque hover:bg-[#233f31] text-white font-semibold text-center shadow-lg shadow-bosque/20 transition-all hover:-translate-y-0.5">
+                            Ver Catálogo de Sillas
+                        </a>
+                        <a href="#contacto" class="px-8 py-4 rounded-2xl bg-arena dark:bg-pizarra hover:opacity-90 font-semibold text-center border warm-border transition-all">
+                            Asesoramiento Personalizado
+                        </a>
+                    </div>
+
+                    <!-- Mini métricas de confianza -->
+                    <div class="grid grid-cols-3 gap-4 pt-6 border-t warm-border max-w-lg">
+                        <div>
+                            <p class="font-serif font-bold text-2xl text-terracota">+450</p>
+                            <p class="text-xs text-[#6B5E55] dark:text-[#A89F96]">Hogares equipados</p>
+                        </div>
+                        <div>
+                            <p class="font-serif font-bold text-2xl text-bosque dark:text-emerald-400">100%</p>
+                            <p class="text-xs text-[#6B5E55] dark:text-[#A89F96]">Maderas estacionadas</p>
+                        </div>
+                        <div>
+                            <p class="font-serif font-bold text-2xl">5 años</p>
+                            <p class="text-xs text-[#6B5E55] dark:text-[#A89F96]">Garantía estructural</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Tarjeta Visual Destacada del Hero -->
+                <div class="lg:col-span-5">
+                    <div class="relative rounded-3xl bg-arena dark:bg-pizarra p-6 sm:p-8 border warm-border shadow-2xl">
+                        <div class="aspect-[4/3] rounded-2xl bg-gradient-to-br from-[#D8C7B4] via-[#B9936C] to-[#7C4D25] dark:from-[#3A2E25] dark:via-[#5C3D24] dark:to-[#2C1D11] flex flex-col items-center justify-center p-6 relative overflow-hidden">
+                            <!-- Ilustración SVG estilizada de silla de autor -->
+                            <svg class="w-44 h-44 text-crema drop-shadow-xl" viewBox="0 0 200 200" fill="none">
+                                <!-- Respaldo curvo -->
+                                <path d="M52 46C52 36 148 36 148 46L142 84C142 90 58 90 58 84L52 46Z" fill="currentColor" fill-opacity="0.92"/>
+                                <!-- Soportes respaldo -->
+                                <rect x="64" y="82" width="8" height="36" rx="4" fill="currentColor"/>
+                                <rect x="128" y="82" width="8" height="36" rx="4" fill="currentColor"/>
+                                <!-- Asiento tapizado -->
+                                <rect x="46" y="114" width="108" height="16" rx="8" fill="#2D4F3E"/>
+                                <!-- Patas -->
+                                <path d="M62 130L50 182" stroke="currentColor" stroke-width="9" stroke-linecap="round"/>
+                                <path d="M138 130L150 182" stroke="currentColor" stroke-width="9" stroke-linecap="round"/>
+                                <path d="M78 130L72 174" stroke="currentColor" stroke-width="7" stroke-linecap="round" stroke-opacity="0.75"/>
+                                <path d="M122 130L128 174" stroke="currentColor" stroke-width="7" stroke-linecap="round" stroke-opacity="0.75"/>
+                            </svg>
+                            <span class="mt-2 px-3 py-1 rounded-full bg-black/25 backdrop-blur-sm text-crema text-xs font-medium">
+                                Edición Insignia • Sillón Nórdico Moraez
+                            </span>
+                        </div>
+
+                        <div class="mt-6 flex items-center justify-between">
+                            <div>
+                                <p class="text-xs uppercase tracking-wider text-terracota font-bold">Curaduría Directa</p>
+                                <h2 class="font-serif font-bold text-xl">Madera de Petiribí y Lino</h2>
+                            </div>
+                            <a href="#catalogo" class="w-11 h-11 rounded-full bg-terracota text-white flex items-center justify-center hover:scale-105 transition-transform" aria-label="Explorar catálogo">
+                                →
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- ================= SECCIÓN SOBRE MÍ ================= -->
+    <section id="sobre-mi" class="py-20 bg-arena/65 dark:bg-pizarra/60 border-y warm-border">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid lg:grid-cols-12 gap-12 items-center">
+                
+                <!-- Retrato / Ficha Artesanal de Pedro Moraez -->
+                <div class="lg:col-span-5">
+                    <div class="rounded-3xl bg-crema dark:bg-carbon p-8 border warm-border shadow-lg relative">
+                        <div class="flex items-center gap-4 mb-6">
+                            <div class="w-16 h-16 rounded-2xl bg-gradient-to-tr from-madera to-terracota text-white font-serif font-bold text-2xl flex items-center justify-center shadow-md">
+                                PM
+                            </div>
+                            <div>
+                                <h3 class="font-serif font-bold text-2xl">Pedro Moraez</h3>
+                                <p class="text-sm text-terracota font-semibold">32 años • Diseñador & Especialista en Sillería</p>
+                            </div>
+                        </div>
+
+                        <blockquote class="italic text-[#6B5E55] dark:text-[#A89F96] border-l-4 border-bosque pl-4 py-1 mb-6 text-sm leading-relaxed">
+                            "Una buena silla no solo acompaña una mesa o un escritorio: sostiene charlas largas, horas de trabajo creativo y momentos de descanso real."
+                        </blockquote>
+
+                        <div class="space-y-3 text-sm">
+                            <div class="flex justify-between py-2 border-b warm-border">
+                                <span class="text-[#6B5E55] dark:text-[#A89F96]">Especialidad</span>
+                                <span class="font-semibold">Comedor, Ergonomía & Autor</span>
+                            </div>
+                            <div class="flex justify-between py-2 border-b warm-border">
+                                <span class="text-[#6B5E55] dark:text-[#A89F96]">Materiales clave</span>
+                                <span class="font-semibold">Petiribí, Guayubira, Acero & Lino</span>
+                            </div>
+                            <div class="flex justify-between py-2">
+                                <span class="text-[#6B5E55] dark:text-[#A89F96]">Atención</span>
+                                <span class="font-semibold text-bosque dark:text-emerald-400">Directa sin intermediarios</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Historia y Filosofía -->
+                <div class="lg:col-span-7 space-y-5">
+                    <span class="text-xs font-bold uppercase tracking-widest text-terracota">Sobre mí</span>
+                    <h2 class="font-serif font-bold text-3xl sm:text-4xl leading-tight">
+                        Pasión por los detalles, respeto por los materiales nobles y obsesión por la comodidad.
+                    </h2>
+                    <p class="text-[#6B5E55] dark:text-[#A89F96] leading-relaxed">
+                        Hola, soy <strong>Pedro Moraez</strong>. A mis 32 años llevo más de una década dedicado al mundo del mobiliario y especialmente al universo de las sillas. Empecé restaurando piezas clásicas de madera maciza en mi taller y hoy diseño y selecciono modelos pensados para durar generaciones.
+                    </p>
+                    <p class="text-[#6B5E55] dark:text-[#A89F96] leading-relaxed">
+                        Creo firmemente que elegir una silla no debería ser una compra fría. Por eso evalúo personalmente el ángulo de cada respaldo, la densidad de cada espuma y la resistencia de cada encastre, brindándote asesoramiento directo para encontrar la pieza exacta según tu espacio, altura y uso diario.
+                    </p>
+
+                    <div class="grid sm:grid-cols-2 gap-4 pt-3">
+                        <div class="p-4 rounded-2xl bg-crema dark:bg-carbon border warm-border">
+                            <h4 class="font-bold text-sm mb-1 text-bosque dark:text-emerald-400">Ergonomía Real</h4>
+                            <p class="text-xs text-[#6B5E55] dark:text-[#A89F96]">Curvaturas estudiadas para cuidar la postura lumbar sin sacrificar estética.</p>
+                        </div>
+                        <div class="p-4 rounded-2xl bg-crema dark:bg-carbon border warm-border">
+                            <h4 class="font-bold text-sm mb-1 text-terracota">Terminación Artesanal</h4>
+                            <p class="text-xs text-[#6B5E55] dark:text-[#A89F96]">Lustres naturales al aceite y tapizados antimanchas de alta resistencia.</p>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- ================= CATÁLOGO INTERACTIVO DE SILLAS ================= -->
+    <section id="catalogo" class="py-24">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            
+            <!-- Encabezado y Barra de Filtros -->
+            <div class="flex flex-col lg:flex-row lg:items-end justify-between gap-6 mb-12">
+                <div>
+                    <span class="text-xs font-bold uppercase tracking-widest text-bosque dark:text-emerald-400">Colección 2026</span>
+                    <h2 class="font-serif font-bold text-3xl sm:text-4xl mt-1">Catálogo de Sillas</h2>
+                    <p class="text-sm text-[#6B5E55] dark:text-[#A89F96] mt-2">Precios expresados en Pesos Argentinos (ARS). Hacé clic en cualquier silla para ver sus dimensiones y detalles.</p>
+                </div>
+
+                <!-- Filtros por Categoría -->
+                <div id="category-filters" class="flex flex-wrap gap-2">
+                    <button data-cat="todas" class="cat-btn px-4 py-2.5 rounded-xl text-sm font-semibold bg-bosque text-white shadow-sm transition-all">
+                        Todas
+                    </button>
+                    <button data-cat="comedor" class="cat-btn px-4 py-2.5 rounded-xl text-sm font-semibold bg-arena dark:bg-pizarra hover:opacity-80 border warm-border transition-all">
+                        Comedor
+                    </button>
+                    <button data-cat="oficina" class="cat-btn px-4 py-2.5 rounded-xl text-sm font-semibold bg-arena dark:bg-pizarra hover:opacity-80 border warm-border transition-all">
+                        Oficina / Ergonómicas
+                    </button>
+                    <button data-cat="living" class="cat-btn px-4 py-2.5 rounded-xl text-sm font-semibold bg-arena dark:bg-pizarra hover:opacity-80 border warm-border transition-all">
+                        Sillones / Living
+                    </button>
+                </div>
+            </div>
+
+            <!-- Grid de Productos (Renderizado con JS) -->
+            <div id="products-grid" class="grid sm:grid-cols-2 lg:grid-cols-3 gap-8"></div>
+
+        </div>
+    </section>
+
+    <!-- ================= SECCIÓN DE BENEFICIOS Y GARANTÍA ================= -->
+    <section id="garantia" class="py-20 bg-bosque text-crema">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-2xl mx-auto mb-14">
+                <span class="text-xs font-bold uppercase tracking-widest text-amber-300">Compromiso Moraez</span>
+                <h2 class="font-serif font-bold text-3xl sm:text-4xl mt-2">Calidad respaldada en cada entrega</h2>
+            </div>
+
+            <div class="grid md:grid-cols-3 gap-8">
+                <!-- Beneficio 1 -->
+                <div class="p-7 rounded-3xl bg-white/10 backdrop-blur-sm border border-white/15">
+                    <div class="w-12 h-12 rounded-2xl bg-terracota text-white flex items-center justify-center mb-5">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 8h14M5 8a2 2 0 110-4h14a2 2 0 110 4M5 8v10a2 2 0 002 2h10a2 2 0 002-2V8m-9 4h4"/>
+                        </svg>
+                    </div>
+                    <h3 class="font-serif font-bold text-xl mb-2">Envíos Seguros a Todo el País</h3>
+                    <p class="text-sm text-crema/80 leading-relaxed">
+                        Embalaje reforzado a medida para proteger cada esquina y tapizado. Envíos sin cargo en AMBA en compras mayores a $350.000 ARS.
+                    </p>
+                </div>
+
+                <!-- Beneficio 2 -->
+                <div class="p-7 rounded-3xl bg-white/10 backdrop-blur-sm border border-white/15">
+                    <div class="w-12 h-12 rounded-2xl bg-amber-500/90 text-nogal flex items-center justify-center mb-5">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2.286 6.857L21 12l-5.714 2.143L13 21l-2.286-6.857L5 12l5.714-2.143L13 3z"/>
+                        </svg>
+                    </div>
+                    <h3 class="font-serif font-bold text-xl mb-2">Materiales Nobles Certificados</h3>
+                    <p class="text-sm text-crema/80 leading-relaxed">
+                        Trabajamos exclusivamente con maderas macizas estacionadas, herrajes de acero templado y telas de tapicería con tratamiento antimanchas.
+                    </p>
+                </div>
+
+                <!-- Beneficio 3 -->
+                <div class="p-7 rounded-3xl bg-white/10 backdrop-blur-sm border border-white/15">
+                    <div class="w-12 h-12 rounded-2xl bg-emerald-400/20 text-emerald-300 border border-emerald-300/30 flex items-center justify-center mb-5">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/>
+                        </svg>
+                    </div>
+                    <h3 class="font-serif font-bold text-xl mb-2">Garantía Escrita de 5 Años</h3>
+                    <p class="text-sm text-crema/80 leading-relaxed">
+                        Respaldamos la estructura y encastres de cada silla durante 5 años. Además, ofrecemos servicio postventa de retapizado y mantenimiento.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ================= FORMULARIO DE CONTACTO Y PEDIDOS A MEDIDA ================= -->
+    <section id="contacto" class="py-24">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="max-w-5xl mx-auto rounded-3xl bg-arena dark:bg-pizarra border warm-border overflow-hidden shadow-xl">
+                <div class="grid lg:grid-cols-12">
+                    
+                    <!-- Columna Información Directa -->
+                    <div class="lg:col-span-5 bg-nogal text-crema p-8 sm:p-10 flex flex-col justify-between">
+                        <div>
+                            <span class="text-xs font-bold uppercase tracking-widest text-terracota">Atención Personalizada</span>
+                            <h2 class="font-serif font-bold text-3xl mt-2 mb-4">¿Buscás un juego de comedor o una silla a medida?</h2>
+                            <p class="text-sm text-crema/80 leading-relaxed mb-8">
+                                Escribime directamente. Podemos personalizar el tono de lustre de la madera, el género del tapizado o armar presupuestos especiales por cantidad.
+                            </p>
+
+                            <div class="space-y-4 text-sm">
+                                <div class="flex items-center gap-3">
+                                    <span class="w-9 h-9 rounded-xl bg-white/10 flex items-center justify-center">📞</span>
+                                    <span>+54 11 4829-7310</span>
+                                </div>
+                                <div class="flex items-center gap-3">
+                                    <span class="w-9 h-9 rounded-xl bg-white/10 flex items-center justify-center">✉️</span>
+                                    <span>contacto@pedromoraez.com.ar</span>
+                                </div>
+                                <div class="flex items-center gap-3">
+                                    <span class="w-9 h-9 rounded-xl bg-white/10 flex items-center justify-center">📍</span>
+                                    <span>Taller & Showroom: Buenos Aires, Argentina</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="mt-10 pt-6 border-t border-white/15 text-xs text-crema/70">
+                            Visitas al showroom con cita previa de lunes a sábados.
+                        </div>
+                    </div>
+
+                    <!-- Columna Formulario con Validación en Tiempo Real -->
+                    <div class="lg:col-span-7 p-8 sm:p-10 bg-crema dark:bg-carbon">
+                        <form id="custom-order-form" novalidate class="space-y-5">
+                            <div class="grid sm:grid-cols-2 gap-5">
+                                <div>
+                                    <label for="client-name" class="block text-xs font-bold uppercase tracking-wider mb-1.5">Tu Nombre *</label>
+                                    <input type="text" id="client-name" placeholder="Ej. Mariana Gómez" required
+                                        class="w-full px-4 py-3 rounded-xl bg-arena/60 dark:bg-pizarra border warm-border focus:outline-none focus:ring-2 focus:ring-terracota text-sm">
+                                    <p id="err-name" class="hidden text-xs text-rose-600 dark:text-rose-400 mt-1">Ingresá al menos 3 caracteres.</p>
+                                </div>
+
+                                <div>
+                                    <label for="client-email" class="block text-xs font-bold uppercase tracking-wider mb-1.5">Email *</label>
+                                    <input type="email" id="client-email" placeholder="mariana@ejemplo.com" required
+                                        class="w-full px-4 py-3 rounded-xl bg-arena/60 dark:bg-pizarra border warm-border focus:outline-none focus:ring-2 focus:ring-terracota text-sm">
+                                    <p id="err-email" class="hidden text-xs text-rose-600 dark:text-rose-400 mt-1">Ingresá un correo electrónico válido.</p>
+                                </div>
+                            </div>
+
+                            <div class="grid sm:grid-cols-2 gap-5">
+                                <div>
+                                    <label for="client-phone" class="block text-xs font-bold uppercase tracking-wider mb-1.5">Teléfono / WhatsApp *</label>
+                                    <input type="tel" id="client-phone" placeholder="Ej. 11 5544-3322" required
+                                        class="w-full px-4 py-3 rounded-xl bg-arena/60 dark:bg-pizarra border warm-border focus:outline-none focus:ring-2 focus:ring-terracota text-sm">
+                                    <p id="err-phone" class="hidden text-xs text-rose-600 dark:text-rose-400 mt-1">Ingresá un teléfono válido (mín. 8 dígitos).</p>
+                                </div>
+
+                                <div>
+                                    <label for="order-type" class="block text-xs font-bold uppercase tracking-wider mb-1.5">Tipo de consulta</label>
+                                    <select id="order-type"
+                                        class="w-full px-4 py-3 rounded-xl bg-arena/60 dark:bg-pizarra border warm-border focus:outline-none focus:ring-2 focus:ring-terracota text-sm">
+                                        <option value="medida">Pedido a medida (lustre / tapizado)</option>
+                                        <option value="comedor">Juego completo de comedor (4 a 8 sillas)</option>
+                                        <option value="oficina">Equipamiento de oficina / Home Office</option>
+                                        <option value="showroom">Coordinar visita al showroom</option>
+                                    </select>
+                                </div>
+                            </div>
+
+                            <div>
+                                <label for="client-msg" class="block text-xs font-bold uppercase tracking-wider mb-1.5">Detalles de tu pedido o consulta *</label>
+                                <textarea id="client-msg" rows="4" placeholder="Contame qué modelo te gustó, cuántas unidades necesitás o qué estilo tiene tu ambiente..." required
+                                    class="w-full px-4 py-3 rounded-xl bg-arena/60 dark:bg-pizarra border warm-border focus:outline-none focus:ring-2 focus:ring-terracota text-sm resize-none"></textarea>
+                                <p id="err-msg" class="hidden text-xs text-rose-600 dark:text-rose-400 mt-1">Contame un poco más (mínimo 12 caracteres).</p>
+                            </div>
+
+                            <button type="submit"
+                                class="w-full py-4 px-6 rounded-xl bg-terracota hover:bg-[#b24d28] text-white font-semibold text-sm shadow-lg shadow-terracota/25 transition-all">
+                                Enviar Consulta a Pedro Moraez
+                            </button>
+                        </form>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ================= FOOTER COMPLETO ================= -->
+    <footer class="bg-arena dark:bg-pizarra border-t warm-border py-12">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid md:grid-cols-3 gap-8 items-center">
+                <div>
+                    <span class="font-serif font-bold text-xl block">Pedro Moraez</span>
+                    <p class="text-xs text-[#6B5E55] dark:text-[#A89F96] mt-1">
+                        Diseño y venta de sillas artesanales, ergonómicas y de autor. Buenos Aires, Argentina.
+                    </p>
+                </div>
+
+                <div class="flex flex-wrap md:justify-center gap-6 text-sm font-medium">
+                    <a href="#inicio" class="hover:text-terracota transition-colors">Inicio</a>
+                    <a href="#sobre-mi" class="hover:text-terracota transition-colors">Sobre mí</a>
+                    <a href="#catalogo" class="hover:text-terracota transition-colors">Catálogo</a>
+                    <a href="#garantia" class="hover:text-terracota transition-colors">Garantía</a>
+                    <a href="#contacto" class="hover:text-terracota transition-colors">Contacto</a>
+                </div>
+
+                <div class="md:text-right text-xs text-[#6B5E55] dark:text-[#A89F96]">
+                    <p>© 2026 Pedro Moraez Sillería. Todos los derechos reservados.</p>
+                    <p class="mt-1">Precios expresados en Pesos Argentinos (ARS).</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- ================= MODAL VISTA PREVIA DETALLADA DE SILLA ================= -->
+    <div id="product-modal" class="fixed inset-0 z-50 hidden items-center justify-center p-4 bg-black/65 backdrop-blur-sm">
+        <div class="bg-crema dark:bg-pizarra border warm-border rounded-3xl max-w-2xl w-full overflow-hidden shadow-2xl animate-fade-up">
+            <div id="modal-visual" class="h-56 sm:h-64 relative flex items-center justify-center p-6">
+                <button id="close-product-modal" aria-label="Cerrar" class="absolute top-4 right-4 w-10 h-10 rounded-full bg-black/30 hover:bg-black/50 text-white flex items-center justify-center transition-colors">
+                    ✕
+                </button>
+                <div id="modal-svg-holder"></div>
+            </div>
+
+            <div class="p-6 sm:p-8">
+                <div class="flex flex-wrap items-start justify-between gap-2 mb-2">
+                    <div>
+                        <span id="modal-cat-tag" class="text-xs font-bold uppercase tracking-wider text-terracota">Categoría</span>
+                        <h3 id="modal-prod-title" class="font-serif font-bold text-2xl sm:text-3xl">Nombre de Silla</h3>
+                    </div>
+                    <p id="modal-prod-price" class="font-serif font-bold text-2xl text-bosque dark:text-emerald-400">$0 ARS</p>
+                </div>
+
+                <p id="modal-prod-desc" class="text-sm text-[#6B5E55] dark:text-[#A89F96] leading-relaxed my-4">
+                    Descripción completa...
+                </p>
+
+                <!-- Ficha Técnica: Materiales y Dimensiones -->
+                <div class="grid sm:grid-cols-2 gap-3 p-4 rounded-2xl bg-arena/80 dark:bg-carbon border warm-border text-xs mb-6">
+                    <div>
+                        <span class="text-[#6B5E55] dark:text-[#A89F96] block">Materiales:</span>
+                        <strong id="modal-prod-materials" class="font-semibold text-sm">-</strong>
+                    </div>
+                    <div>
+                        <span class="text-[#6B5E55] dark:text-[#A89F96] block">Dimensiones (Alto × Ancho × Prof.):</span>
+                        <strong id="modal-prod-dimensions" class="font-semibold text-sm">-</strong>
+                    </div>
+                </div>
+
+                <div class="flex flex-col sm:flex-row justify-end gap-3">
+                    <button id="modal-cancel-btn" class="px-5 py-3 rounded-xl bg-arena dark:bg-carbon font-semibold text-sm border warm-border hover:opacity-80">
+                        Seguir viendo
+                    </button>
+                    <button id="modal-add-cart-btn" class="px-6 py-3 rounded-xl bg-terracota hover:bg-[#b24d28] text-white font-semibold text-sm shadow-md transition-all">
+                        + Agregar al Carrito
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ================= DRAWER LATERAL DEL CARRITO DE COMPRAS ================= -->
+    <div id="cart-overlay" class="fixed inset-0 z-50 hidden bg-black/55 backdrop-blur-xs transition-opacity">
+        <aside id="cart-drawer" class="fixed top-0 right-0 h-full w-full max-w-md bg-crema dark:bg-carbon border-l warm-border shadow-2xl flex flex-col justify-between transform translate-x-full transition-transform duration-300">
+            
+            <!-- Cabecera Carrito -->
+            <div class="p-6 border-b warm-border flex items-center justify-between">
+                <div>
+                    <h3 class="font-serif font-bold text-xl">Tu Selección de Sillas</h3>
+                    <p class="text-xs text-[#6B5E55] dark:text-[#A89F96]">Simulador de pedido directo con Pedro Moraez</p>
+                </div>
+                <button id="close-cart-btn" aria-label="Cerrar carrito" class="w-9 h-9 rounded-xl bg-arena dark:bg-pizarra flex items-center justify-center hover:opacity-80">
+                    ✕
+                </button>
+            </div>
+
+            <!-- Lista de Ítems -->
+            <div id="cart-items-container" class="flex-1 overflow-y-auto p-6 space-y-4">
+                <!-- Se renderiza dinámicamente -->
+            </div>
+
+            <!-- Resumen y Checkout Simulado -->
+            <div class="p-6 border-t warm-border bg-arena/60 dark:bg-pizarra space-y-4">
+                <div class="flex items-center justify-between text-sm">
+                    <span class="text-[#6B5E55] dark:text-[#A89F96]">Subtotal estimado</span>
+                    <span id="cart-total-price" class="font-serif font-bold text-xl text-bosque dark:text-emerald-400">$0 ARS</span>
+                </div>
+                <p class="text-[11px] text-[#6B5E55] dark:text-[#A89F96]">
+                    * Podés pagar en hasta 6 cuotas sin interés o con 15% de descuento por transferencia bancaria.
+                </p>
+                <button id="checkout-btn" class="w-full py-3.5 px-5 rounded-xl bg-bosque hover:bg-[#233f31] disabled:opacity-40 disabled:cursor-not-allowed text-white font-semibold text-sm shadow-lg transition-all">
+                    Simular Confirmación de Pedido
+                </button>
+            </div>
+        </aside>
+    </div>
+
+    <!-- ================= NOTIFICACIÓN TOAST FLOTANTE ================= -->
+    <div id="toast-notification" class="fixed bottom-6 right-6 z-50 hidden items-center gap-3 px-5 py-3.5 rounded-2xl bg-nogal text-crema border border-white/15 shadow-2xl text-sm font-medium max-w-sm">
+        <span id="toast-icon" class="w-6 h-6 rounded-full bg-emerald-500/20 text-emerald-300 flex items-center justify-center shrink-0">✓</span>
+        <span id="toast-message">Acción completada</span>
+    </div>
+
+    <!-- ================= JAVASCRIPT INTERACTIVO ================= -->
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            
+            // 1. UTILIDAD PARA FORMATEAR PESOS ARGENTINOS (ARS)
+            const formatARS = (amount) => {
+                return new Intl.NumberFormat('es-AR', {
+                    style: 'currency',
+                    currency: 'ARS',
+                    maximumFractionDigits: 0
+                }).format(amount) + ' ARS';
+            };
+
+            // 2. SISTEMA DE NOTIFICACIÓN TOAST
+            const toastEl = document.getElementById('toast-notification');
+            const toastMsg = document.getElementById('toast-message');
+            let toastTimeout;
+
+            function showToast(message) {
+                toastMsg.textContent = message;
+                toastEl.classList.remove('hidden');
+                toastEl.classList.add('flex');
+                clearTimeout(toastTimeout);
+                toastTimeout = setTimeout(() => {
+                    toastEl.classList.add('hidden');
+                    toastEl.classList.remove('flex');
+                }, 3800);
+            }
+
+            // 3. MODO CLARO / OSCURO
+            const themeToggle = document.getElementById('theme-toggle');
+            const sunIcon = document.getElementById('sun-icon');
+            const moonIcon = document.getElementById('moon-icon');
+            const htmlEl = document.documentElement;
+
+            function syncThemeIcons() {
+                const isDark = htmlEl.classList.contains('dark');
+                sunIcon.classList.toggle('hidden', !isDark);
+                moonIcon.classList.toggle('hidden', isDark);
+            }
+
+            if (localStorage.getItem('pm-theme') === 'dark') {
+                htmlEl.classList.add('dark');
+            }
+            syncThemeIcons();
+
+            themeToggle.addEventListener('click', () => {
+                htmlEl.classList.toggle('dark');
+                localStorage.setItem('pm-theme', htmlEl.classList.contains('dark') ? 'dark' : 'light');
+                syncThemeIcons();
+            });
+
+            // 4. MENÚ MÓVIL
+            const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+            const mobileMenu = document.getElementById('mobile-menu');
+            const menuBars = document.getElementById('menu-bars');
+            const menuX = document.getElementById('menu-x');
+
+            mobileMenuBtn.addEventListener('click', () => {
+                const isHidden = mobileMenu.classList.contains('hidden');
+                mobileMenu.classList.toggle('hidden');
+                menuBars.classList.toggle('hidden', isHidden);
+                menuX.classList.toggle('hidden', !isHidden);
+            });
+
+            document.querySelectorAll('.mobile-nav-link').forEach(link => {
+                link.addEventListener('click', () => {
+                    mobileMenu.classList.add('hidden');
+                    menuBars.classList.remove('hidden');
+                    menuX.classList.add('hidden');
+                });
+            });
+
+            // 5. CATÁLOGO DE SILLAS (DATOS CON PRECIOS EN ARS, MATERIALES Y DIMENSIONES)
+            const chairsData = [
+                {
+                    id: 'silla-petiribi-nord',
+                    name: 'Silla Nórdica Petiribí',
+                    category: 'comedor',
+                    categoryLabel: 'Comedor',
+                    price: 145000,
+                    materials: 'Madera maciza de Petiribí lustrado + Lino natural',
+                    dimensions: '81 cm × 49 cm × 52 cm',
+                    bgGradient: 'from-[#DFCBB5] to-[#B7926B] dark:from-[#3D2F24] dark:to-[#281E17]',
+                    description: 'Respaldo anatómico curvado al vapor y asiento tapizado en lino antimanchas de alta densidad. Ideal para sobremesas largas sin fatiga.',
+                    svg: `<svg class="w-32 h-32 text-nogal dark:text-crema" viewBox="0 0 120 120" fill="none" stroke="currentColor" stroke-width="4" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M34 26h52v20H34z" fill="currentColor" fill-opacity="0.15"/>
+                            <path d="M38 46v22M82 46v22"/>
+                            <rect x="28" y="68" width="64" height="10" rx="5" fill="#2D4F3E" stroke="none"/>
+                            <path d="M36 78l-6 30M84 78l6 30M46 78l-3 26M74 78l3 26"/>
+                          </svg>`
+                },
+                {
+                    id: 'silla-ergo-moraez',
+                    name: 'Silla Ergonómica Studio Pro',
+                    category: 'oficina',
+                    categoryLabel: 'Oficina / Ergonómicas',
+                    price: 268000,
+                    materials: 'Malla mesh respirable, soporte lumbar regulable y base de aluminio',
+                    dimensions: '98–108 cm × 64 cm × 60 cm',
+                    bgGradient: 'from-[#C8D6CE] to-[#8FA89B] dark:from-[#23362D] dark:to-[#18241E]',
+                    description: 'Diseñada para jornadas intensas de trabajo o estudio. Cuenta con apoyo lumbar dinámico, apoyabrazos 3D y pistón neumático reforzado.',
+                    svg: `<svg class="w-32 h-32 text-bosque dark:text-emerald-300" viewBox="0 0 120 120" fill="none" stroke="currentColor" stroke-width="4" stroke-linecap="round">
+                            <rect x="38" y="18" width="44" height="44" rx="12" fill="currentColor" fill-opacity="0.15"/>
+                            <path d="M60 62v12"/>
+                            <rect x="32" y="74" width="56" height="10" rx="5" fill="currentColor"/>
+                            <path d="M60 84v18M36 102h48M36 102l-4 6M84 102l4 6"/>
+                          </svg>`
+                },
+                {
+                    id: 'poltrona-guayubira',
+                    name: 'Poltrona Pampa Guayubira',
+                    category: 'living',
+                    categoryLabel: 'Sillones / Living',
+                    price: 340000,
+                    materials: 'Guayubira seleccionada + Cuero vacuno curtido vegetal',
+                    dimensions: '76 cm × 68 cm × 74 cm',
+                    bgGradient: 'from-[#E5C6B5] to-[#C87B5B] dark:from-[#472A1E] dark:to-[#2B1811]',
+                    description: 'Sillón bajo de autor con inclinación relajada de 105°, apoyabrazos amplios y almohadones con cierre desmontable en cuero natural.',
+                    svg: `<svg class="w-32 h-32 text-terracota dark:text-amber-200" viewBox="0 0 120 120" fill="none" stroke="currentColor" stroke-width="4" stroke-linecap="round">
+                            <path d="M28 36l10 42h44l10-42" fill="currentColor" fill-opacity="0.18"/>
+                            <path d="M22 58h76"/>
+                            <rect x="30" y="74" width="60" height="12" rx="6" fill="currentColor"/>
+                            <path d="M34 86l-6 20M86 86l6 20"/>
+                          </svg>`
+                },
+                {
+                    id: 'silla-windsor-artesanal',
+                    name: 'Silla Windsor Clásica',
+                    category: 'comedor',
+                    categoryLabel: 'Comedor',
+                    price: 132000,
+                    materials: 'Madera de Paraíso macizo con varillas torneadas a mano',
+                    dimensions: '88 cm × 47 cm × 50 cm',
+                    bgGradient: 'from-[#E3D5C3] to-[#C2A887] dark:from-[#382E23] dark:to-[#241D15]',
+                    description: 'Reinterpretación contemporánea del clásico diseño inglés. Ligera, sumamente resistente y con asiento rebajado para mayor confort.',
+                    svg: `<svg class="w-32 h-32 text-nogal dark:text-crema" viewBox="0 0 120 120" fill="none" stroke="currentColor" stroke-width="3.5" stroke-linecap="round">
+                            <path d="M34 68C34 24 86 24 86 68"/>
+                            <path d="M46 34v34M60 28v40M74 34v34"/>
+                            <rect x="28" y="68" width="64" height="9" rx="4.5" fill="currentColor"/>
+                            <path d="M38 77l-7 30M82 77l7 30"/>
+                          </svg>`
+                },
+                {
+                    id: 'silla-ejecutiva-terra',
+                    name: 'Silla Ejecutiva Terra',
+                    category: 'oficina',
+                    categoryLabel: 'Oficina / Ergonómicas',
+                    price: 295000,
+                    materials: 'Carcasa multilaminada en nogal + Tapizado eco-cuero terracota',
+                    dimensions: '92–100 cm × 62 cm × 58 cm',
+                    bgGradient: 'from-[#DEC8BA] to-[#B08368] dark:from-[#3A281E] dark:to-[#241812]',
+                    description: 'Combina la presencia cálida de la madera curvada con mecanismos ergonómicos ocultos y ruedas silenciosas aptas para parquet.',
+                    svg: `<svg class="w-32 h-32 text-nogal dark:text-amber-300" viewBox="0 0 120 120" fill="none" stroke="currentColor" stroke-width="4" stroke-linecap="round">
+                            <rect x="34" y="22" width="52" height="52" rx="16" fill="currentColor" fill-opacity="0.2"/>
+                            <path d="M60 74v18M34 92h52"/>
+                            <circle cx="36" cy="100" r="4" fill="currentColor"/>
+                            <circle cx="60" cy="100" r="4" fill="currentColor"/>
+                            <circle cx="84" cy="100" r="4" fill="currentColor"/>
+                          </svg>`
+                },
+                {
+                    id: 'butaca-boucle-bosque',
+                    name: 'Butaca Curva Bouclé',
+                    category: 'living',
+                    categoryLabel: 'Sillones / Living',
+                    price: 315000,
+                    materials: 'Estructura interna en eucalipto + Tela Bouclé suave + Patas fresno',
+                    dimensions: '74 cm × 72 cm × 70 cm',
+                    bgGradient: 'from-[#D1DDD6] to-[#9AB2A4] dark:from-[#26382E] dark:to-[#18241D]',
+                    description: 'Pieza protagonista para rincones de lectura o livings modernos. Su respaldo envolvente abraza la espalda con suavidad.',
+                    svg: `<svg class="w-32 h-32 text-bosque dark:text-emerald-200" viewBox="0 0 120 120" fill="none" stroke="currentColor" stroke-width="4" stroke-linecap="round">
+                            <path d="M26 52C26 30 94 30 94 52v24H26V52z" fill="currentColor" fill-opacity="0.22"/>
+                            <rect x="24" y="68" width="72" height="14" rx="7" fill="currentColor"/>
+                            <path d="M36 82l-4 24M84 82l4 24"/>
+                          </svg>`
+                }
+            ];
+
+            const productsGrid = document.getElementById('products-grid');
+            const categoryBtns = document.querySelectorAll('.cat-btn');
+            let currentModalProduct = null;
+
+            function renderProducts(category = 'todas') {
+                const list = category === 'todas'
+                    ? chairsData
+                    : chairsData.filter(item => item.category === category);
+
+                productsGrid.innerHTML = '';
+
+                list.forEach(chair => {
+                    const card = document.createElement('article');
+                    card.className = 'group rounded-3xl bg-arena/65 dark:bg-pizarra border warm-border overflow-hidden shadow-sm hover:shadow-xl transition-all duration-300 flex flex-col justify-between animate-fade-up';
+                    
+                    card.innerHTML = `
+                        <div>
+                            <div class="h-52 bg-gradient-to-br ${chair.bgGradient} p-6 flex items-center justify-center relative cursor-pointer preview-trigger">
+                                <span class="absolute top-4 left-4 px-3 py-1 rounded-full bg-crema/90 dark:bg-carbon/85 text-xs font-semibold">
+                                    ${chair.categoryLabel}
+                                </span>
+                                <div class="group-hover:scale-105 transition-transform duration-300">
+                                    ${chair.svg}
+                                </div>
+                            </div>
+
+                            <div class="p-6">
+                                <div class="flex items-start justify-between gap-2 mb-2">
+                                    <h3 class="font-serif font-bold text-xl group-hover:text-terracota transition-colors cursor-pointer preview-trigger">
+                                        ${chair.name}
+                                    </h3>
+                                </div>
+                                <p class="text-xs text-[#6B5E55] dark:text-[#A89F96] mb-3 line-clamp-2">
+                                    ${chair.materials}
+                                </p>
+                                <p class="font-serif font-bold text-xl text-bosque dark:text-emerald-400">
+                                    ${formatARS(chair.price)}
+                                </p>
+                            </div>
+                        </div>
+
+                        <div class="px-6 pb-6 pt-2 flex gap-2.5">
+                            <button class="preview-trigger flex-1 py-2.5 px-3 rounded-xl bg-crema dark:bg-carbon hover:opacity-85 text-xs font-semibold border warm-border transition-all">
+                                Ver detalles
+                            </button>
+                            <button class="add-direct-btn flex-1 py-2.5 px-3 rounded-xl bg-terracota hover:bg-[#b24d28] text-white text-xs font-semibold shadow-sm transition-all">
+                                + Agregar
+                            </button>
+                        </div>
+                    `;
+
+                    // Eventos de vista previa modal
+                    card.querySelectorAll('.preview-trigger').forEach(el => {
+                        el.addEventListener('click', () => openProductModal(chair));
+                    });
+
+                    // Evento agregar directo al carrito
+                    card.querySelector('.add-direct-btn').addEventListener('click', () => {
+                        addToCart(chair);
+                    });
+
+                    productsGrid.appendChild(card);
+                });
+            }
+
+            categoryBtns.forEach(btn => {
+                btn.addEventListener('click', () => {
+                    categoryBtns.forEach(b => {
+                        b.classList.remove('bg-bosque', 'text-white', 'shadow-sm');
+                        b.classList.add('bg-arena', 'dark:bg-pizarra', 'border', 'warm-border');
+                    });
+                    btn.classList.remove('bg-arena', 'dark:bg-pizarra', 'border', 'warm-border');
+                    btn.classList.add('bg-bosque', 'text-white', 'shadow-sm');
+                    renderProducts(btn.getAttribute('data-cat'));
+                });
+            });
+
+            renderProducts('todas');
+
+            // 6. MODAL DETALLADO DE PRODUCTO
+            const productModal = document.getElementById('product-modal');
+            const modalVisual = document.getElementById('modal-visual');
+            const modalSvgHolder = document.getElementById('modal-svg-holder');
+            const modalCatTag = document.getElementById('modal-cat-tag');
+            const modalProdTitle = document.getElementById('modal-prod-title');
+            const modalProdPrice = document.getElementById('modal-prod-price');
+            const modalProdDesc = document.getElementById('modal-prod-desc');
+            const modalProdMaterials = document.getElementById('modal-prod-materials');
+            const modalProdDimensions = document.getElementById('modal-prod-dimensions');
+            const modalAddCartBtn = document.getElementById('modal-add-cart-btn');
+
+            function openProductModal(chair) {
+                currentModalProduct = chair;
+                modalVisual.className = `h-56 sm:h-64 relative flex items-center justify-center p-6 bg-gradient-to-br ${chair.bgGradient}`;
+                modalSvgHolder.innerHTML = chair.svg;
+                modalCatTag.textContent = chair.categoryLabel;
+                modalProdTitle.textContent = chair.name;
+                modalProdPrice.textContent = formatARS(chair.price);
+                modalProdDesc.textContent = chair.description;
+                modalProdMaterials.textContent = chair.materials;
+                modalProdDimensions.textContent = chair.dimensions;
+
+                productModal.classList.remove('hidden');
+                productModal.classList.add('flex');
+                document.body.style.overflow = 'hidden';
+            }
+
+            function closeProductModal() {
+                productModal.classList.add('hidden');
+                productModal.classList.remove('flex');
+                document.body.style.overflow = '';
+            }
+
+            document.getElementById('close-product-modal').addEventListener('click', closeProductModal);
+            document.getElementById('modal-cancel-btn').addEventListener('click', closeProductModal);
+            productModal.addEventListener('click', (e) => {
+                if (e.target === productModal) closeProductModal();
+            });
+
+            modalAddCartBtn.addEventListener('click', () => {
+                if (currentModalProduct) {
+                    addToCart(currentModalProduct);
+                    closeProductModal();
+                }
+            });
+
+            // 7. CARRITO DE COMPRAS LATERAL (DRAWER) FUNCIONAL
+            let cart = [];
+            const cartOverlay = document.getElementById('cart-overlay');
+            const cartDrawer = document.getElementById('cart-drawer');
+            const cartBadge = document.getElementById('cart-badge');
+            const cartItemsContainer = document.getElementById('cart-items-container');
+            const cartTotalPrice = document.getElementById('cart-total-price');
+            const checkoutBtn = document.getElementById('checkout-btn');
+
+            function openCart() {
+                cartOverlay.classList.remove('hidden');
+                requestAnimationFrame(() => {
+                    cartDrawer.classList.remove('translate-x-full');
+                });
+                document.body.style.overflow = 'hidden';
+            }
+
+            function closeCart() {
+                cartDrawer.classList.add('translate-x-full');
+                setTimeout(() => {
+                    cartOverlay.classList.add('hidden');
+                    document.body.style.overflow = '';
+                }, 280);
+            }
+
+            document.getElementById('open-cart-btn').addEventListener('click', openCart);
+            document.getElementById('close-cart-btn').addEventListener('click', closeCart);
+            cartOverlay.addEventListener('click', (e) => {
+                if (e.target === cartOverlay) closeCart();
+            });
+
+            function addToCart(chair) {
+                const existing = cart.find(item => item.id === chair.id);
+                if (existing) {
+                    existing.qty += 1;
+                } else {
+                    cart.push({ ...chair, qty: 1 });
+                }
+                updateCartUI();
+                showToast(`"${chair.name}" agregada al carrito.`);
+            }
+
+            function changeQty(id, delta) {
+                const index = cart.findIndex(item => item.id === id);
+                if (index === -1) return;
+
+                cart[index].qty += delta;
+                if (cart[index].qty <= 0) {
+                    cart.splice(index, 1);
+                }
+                updateCartUI();
+            }
+
+            function updateCartUI() {
+                const totalUnits = cart.reduce((acc, item) => acc + item.qty, 0);
+                const totalAmount = cart.reduce((acc, item) => acc + (item.price * item.qty), 0);
+
+                cartBadge.textContent = totalUnits;
+                cartTotalPrice.textContent = formatARS(totalAmount);
+                checkoutBtn.disabled = cart.length === 0;
+
+                if (cart.length === 0) {
+                    cartItemsContainer.innerHTML = `
+                        <div class="h-full flex flex-col items-center justify-center text-center py-12">
+                            <span class="text-4xl mb-3">🪑</span>
+                            <p class="font-serif font-bold text-lg">Tu carrito está vacío</p>
+                            <p class="text-xs text-[#6B5E55] dark:text-[#A89F96] mt-1 max-w-xs">
+                                Explorá el catálogo de Pedro Moraez y agregá las sillas que quieras cotizar o reservar.
+                            </p>
+                        </div>
+                    `;
+                    return;
+                }
+
+                cartItemsContainer.innerHTML = '';
+                cart.forEach(item => {
+                    const row = document.createElement('div');
+                    row.className = 'p-4 rounded-2xl bg-arena/70 dark:bg-pizarra border warm-border flex items-center justify-between gap-3';
+                    row.innerHTML = `
+                        <div class="min-w-0 flex-1">
+                            <h4 class="font-serif font-bold text-sm truncate">${item.name}</h4>
+                            <p class="text-xs text-bosque dark:text-emerald-400 font-semibold mt-0.5">${formatARS(item.price)} c/u</p>
+                        </div>
+                        <div class="flex items-center gap-2">
+                            <button class="qty-minus w-7 h-7 rounded-lg bg-crema dark:bg-carbon border warm-border font-bold text-sm hover:opacity-80">−</button>
+                            <span class="w-6 text-center text-sm font-bold">${item.qty}</span>
+                            <button class="qty-plus w-7 h-7 rounded-lg bg-crema dark:bg-carbon border warm-border font-bold text-sm hover:opacity-80">+</button>
+                        </div>
+                    `;
+                    row.querySelector('.qty-minus').addEventListener('click', () => changeQty(item.id, -1));
+                    row.querySelector('.qty-plus').addEventListener('click', () => changeQty(item.id, 1));
+                    cartItemsContainer.appendChild(row);
+                });
+            }
+
+            updateCartUI();
+
+            checkoutBtn.addEventListener('click', () => {
+                if (cart.length === 0) return;
+                const totalItems = cart.reduce((acc, i) => acc + i.qty, 0);
+                cart = [];
+                updateCartUI();
+                closeCart();
+                showToast(`¡Pedido simulado de ${totalItems} silla(s) enviado a Pedro Moraez!`);
+            });
+
+            // 8. VALIDACIÓN EN TIEMPO REAL DEL FORMULARIO DE CONTACTO / PEDIDOS A MEDIDA
+            const orderForm = document.getElementById('custom-order-form');
+            const nameInput = document.getElementById('client-name');
+            const emailInput = document.getElementById('client-email');
+            const phoneInput = document.getElementById('client-phone');
+            const msgInput = document.getElementById('client-msg');
+
+            const errName = document.getElementById('err-name');
+            const errEmail = document.getElementById('err-email');
+            const errPhone = document.getElementById('err-phone');
+            const errMsg = document.getElementById('err-msg');
+
+            function checkName() {
+                const ok = nameInput.value.trim().length >= 3;
+                errName.classList.toggle('hidden', ok);
+                nameInput.classList.toggle('border-rose-500', !ok);
+                return ok;
+            }
+
+            function checkEmail() {
+                const ok = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(emailInput.value.trim());
+                errEmail.classList.toggle('hidden', ok);
+                emailInput.classList.toggle('border-rose-500', !ok);
+                return ok;
+            }
+
+            function checkPhone() {
+                const digits = phoneInput.value.replace(/\D/g, '');
+                const ok = digits.length >= 8;
+                errPhone.classList.toggle('hidden', ok);
+                phoneInput.classList.toggle('border-rose-500', !ok);
+                return ok;
+            }
+
+            function checkMsg() {
+                const ok = msgInput.value.trim().length >= 12;
+                errMsg.classList.toggle('hidden', ok);
+                msgInput.classList.toggle('border-rose-500', !ok);
+                return ok;
+            }
+
+            nameInput.addEventListener('input', checkName);
+            emailInput.addEventListener('input', checkEmail);
+            phoneInput.addEventListener('input', checkPhone);
+            msgInput.addEventListener('input', checkMsg);
+
+            orderForm.addEventListener('submit', (e) => {
+                e.preventDefault();
+                const valid = checkName() & checkEmail() & checkPhone() & checkMsg();
+                if (valid) {
+                    orderForm.reset();
+                    showToast('¡Consulta enviada! Pedro Moraez te responderá a la brevedad.');
+                } else {
+                    showToast('Revisá los campos marcados en rojo antes de enviar.');
+                }
+            });
+        });
+    </script>
+</body>
+</html>
